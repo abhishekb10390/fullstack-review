@@ -28,17 +28,17 @@ app.get('/repos', function (req, res) {
 
 
 
-  // TODO - your code here!
-  // This route should send back the top 25 repos
-  // saveRepo.Repo.find().sort({'watchers': -1}).limit(25, function(err, results){
-  //   console.log('hi');
-  //   if (err)  {
-  //     throw err;
-  //   } else {
-  //     console.log(results)
-  //     res.send();
-  //   }
-  // })
+  TODO - your code here!
+  This route should send back the top 25 repos
+  saveRepo.Repo.find().sort({'watchers': -1}).limit(25, function(err, results){
+    console.log('hi');
+    if (err)  {
+      throw err;
+    } else {
+      console.log(results)
+      res.send();
+    }
+  })
 });
 
 let port = 1128;
