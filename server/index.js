@@ -14,31 +14,33 @@ app.post('/repos', function (req, res) {
   // This route should take the github username provided
   // and get the repo information from the github API, then
   // save the repo information in the database
-  var username = req.body;
+  var username = req.body.term;
+  //console.log(req.body);
   getGitApi.getReposByUsername(username, saveRepo.save);
+  res.send();
 
 });
 
-app.get('/repos', function (req, res) {
+app.get('/repos', function (req, res, next) {
 
-  saveRepo.Repo.find({username}, function(err, results){
-    console.log('*****' + results);
-  })
+//   saveRepo.Repo.find({'username'}, function(err, results){
+//     console.log('*****' + results[0]);
+//     res.send();
+//   });
+// });
 
-
-
-
-  TODO - your code here!
-  This route should send back the top 25 repos
-  saveRepo.Repo.find().sort({'watchers': -1}).limit(25, function(err, results){
-    console.log('hi');
+  // TODO - your code here!
+  // This route should send back the top 25 repos
+  saveRepo.Repo.find().sort({'watchers': -1}).limit(25).exec(function(err, results){
+    
     if (err)  {
       throw err;
     } else {
-      console.log(results)
-      res.send();
+      //console.log(Array.isArray(results))
+      // res.send(JSON.stringify(results));
+      res.send(results);
     }
-  })
+  });
 });
 
 let port = 1128;
